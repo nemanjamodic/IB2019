@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><lockbum><email>neanjamogoko@gmam.com</email><images><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:KeyName>Kriptovani tajni kljuc</ds:KeyName>
+<xenc:EncryptedKey xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/><xenc:CipherData><xenc:CipherValue>UNrJZjLEfsDcVGjBVwzFRolDeJN+1t/26cfanhfkSSakvuONumnM0CHoMDmuxbNGtuyWm2hmXOwb
+pouoexN5Ss1c/pCansq5Wi3cgmTL+WWh18ZhxRB/YC8+Y2rI3K8OgRMGDC6rCnjGORVrKSJxkVpX
+r6AwYTaWrPWXp3gPD5o=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData><xenc:CipherValue>XEjmRjBY30xCtNhva0xqUNSQhcA5g3EcmL3idhoHhgp82qw1Yyl2rN/EEpKL5GayK1WAhFHVsECO
+8u68Og//U9a0OrCMpubKy3RRpXLmnu2o5BWhKdHVgNv02Msr3qkIEuI6fYgzFzzL+6OAPoxWKk+k
+PCQyDwK01RHYtBG8SwELXyWLm159VMUb3IJEPgYGoptRAhnFU3ioPxG2F3vNKTvpOQgRUhN642Cq
+n4VyvZllW912g1o5STUcFhocyO5533IlKFLSs550xcLL0Bj2+7wgaYIk5uJI6INnzY+Kl1mRDvqz
+vAFv6GyJ+Q6qDryCJywUmY/kEIZAZRHjcdkwqGSriUNAanbceU+TXRPyYFvXmTWauJzgYgD2YYQA
+Pd+/zyZhSt0cryphD/3NjGRHyw==</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></images><date>Wed May 29 16:40:47 CEST 2019</date><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+<ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>n8SgD8wagVSvSkoJe28/w5Q1KIc=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>
+jHMzK4htYidMKBVt1SrN5+j2OYHpfLsY5+QomU1O0SkalZzP+FTRg/qZZp79yjp8+TkL/Jxiin7W
+/tDTfALVZJFYmbAcB2dTNo5Wk4iRfVo0rF9eOb1nBRrmQcunuc99otLHHBnNkfTE8UbqR5sDfs45
+JCzb2GeYVTf6pZwdZ7g=
+</ds:SignatureValue>
+<ds:KeyInfo>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>
+zCkJaMtuI/jCN5oXzS/jcb06Dz2t5TFRt18XS1uXvr4/Z09KWOmaqE1oSJQs/nlzbPIOBLqCtchh
++Sn1NBo4i8QPugPkriWN2UOb0uKVzEzs5wwy+4GzV/vv6zq0cFpj5f9GWIrmtX4MKP2O0VVi743f
+aw5L4Ok49/+kGKI9efc=
+</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+<ds:X509Data>
+<ds:X509Certificate>
+MIICVzCCAcCgAwIBAgIEXO6HQjANBgkqhkiG9w0BAQUFADBwMR4wHAYJKoZIhvcNAQkBFg9uZW16
+YUBnbWFpbC5jb20xCzAJBgNVBAYTAlJTMQswCQYDVQQIDAJSUzELMAkGA1UEBwwCTlMxDDAKBgNV
+BAoMA0ZUTjELMAkGA1UECwwCSUIxDDAKBgNVBAMMA0l2YTAeFw0xOTA1MjkxMzIxMDZaFw0yMDA1
+MjgxMzIxMDZaMHAxHjAcBgkqhkiG9w0BCQEWD25lbXphQGdtYWlsLmNvbTELMAkGA1UEBhMCUlMx
+CzAJBgNVBAgMAlJTMQswCQYDVQQHDAJOUzEMMAoGA1UECgwDRlROMQswCQYDVQQLDAJJQjEMMAoG
+A1UEAwwDSXZhMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDMKQloy24j+MI3mhfNL+NxvToP
+Pa3lMVG3XxdLW5e+vj9nT0pY6ZqoTWhIlCz+eXNs8g4EuoK1yGH5KfU0GjiLxA+6A+SuJY3ZQ5vS
+4pXMTOznDDL7gbNX++/rOrRwWmPl/0ZYiua1fgwo/Y7RVWLvjd9rDkvg6Tj3/6QYoj159wIDAQAB
+MA0GCSqGSIb3DQEBBQUAA4GBAJnxS2pnwfg92IgWYCRbiNsKPHaj5lX6yDSHLd92/DdWwEC1m3m1
+DycmKCGIbRBYesw9m2XqXsqH0o1JAw78a4dR/Ck/eq9a1V6OSSG+A1ZwDDc+NImShiElJ9uFzXbs
+I5q9w9Dcb4M6TvlwGIohEHHl7D9W3USbgBOD/WT94Bk4
+</ds:X509Certificate>
+</ds:X509Data>
+</ds:KeyInfo>
+</ds:Signature></lockbum>

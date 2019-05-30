@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/fluent-hc-4.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/httpclient-4.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/httpclient-cache-4.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/httpclient-osgi-4.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/httpclient-win-4.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/httpcore-4.4.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/httpmime-4.5.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/jna-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/httpcomponents-client-4.5.8-bin/httpcomponents-client-4.5.8/lib/jna-platform-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/bcpkix-jdk15on-148.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/bcprov-jdk15on-148.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/resolver.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/serializer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/xalan.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Iva/Downloads/XMLSecurity/XMLSecurity/lib/xmlsec-1.5.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
