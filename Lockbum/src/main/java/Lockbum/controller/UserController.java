@@ -42,7 +42,11 @@ public class UserController {
 			@RequestBody Registration registration)
 	{
 		User user = new User();
-		// TODO: OVde mora da se proveri da li vec postoji user sa ovim emailom!
+		User checkingUser = userRepository.findByEmail(registration.getEmail());
+			
+		if(checkingUser != null) {
+			return new ResponseEntity<String>("User with this email already exists!", HttpStatus.BAD_REQUEST);
+		}
 		user.setEmail(registration.getEmail());
 		user.setPassword(registration.getPassword());
 		user.setActive(false);
