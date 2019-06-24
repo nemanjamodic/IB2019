@@ -36,6 +36,8 @@ public class AuthenticationController {
 		
 		final Authentication authentication;
 		
+		System.out.println(tokenRequest);
+		
 		try {
 			authentication = authenticationManager.authenticate(authenticationRequest);
 		} catch (AuthenticationException ex) {

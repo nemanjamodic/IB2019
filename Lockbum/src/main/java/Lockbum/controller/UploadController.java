@@ -1,6 +1,7 @@
 package Lockbum.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,9 +30,10 @@ public class UploadController {
 
 	@PostMapping("/upload")
 	public ResponseEntity<?> uploadFile(
-			@RequestParam("file") MultipartFile file)
+			@RequestParam("file") MultipartFile file,
+			Principal principal)
 	{
-		String fileName = uploadService.uploadFile(file);
+		String fileName = uploadService.uploadFile(file, principal.getName());
 		
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("download/")

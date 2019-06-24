@@ -18,7 +18,7 @@ public class UploadService {
 	private Path uploadLocation;
 	
 	public UploadService() {
-		uploadLocation = Paths.get("E:\\IBUploadFolder").toAbsolutePath().normalize();
+		uploadLocation = Paths.get("data").toAbsolutePath().normalize();
 		
 		try {
 			Files.createDirectories(uploadLocation);
@@ -28,9 +28,9 @@ public class UploadService {
 
 	}
 
-	public String uploadFile(MultipartFile file) {
+	public String uploadFile(MultipartFile file, String path) {
 		
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		String fileName = StringUtils.cleanPath(path + "/data/" + file.getOriginalFilename());
 		
 		try {
 			if (fileName.contains("..")) {
@@ -47,18 +47,18 @@ public class UploadService {
 		
 	}
 	
-	public Resource loadFile(String fileName) {
+	public Resource loadFile(String path) {
 		try {
-			Path filePath = uploadLocation.resolve(fileName).normalize();
+			Path filePath = uploadLocation.resolve(path).normalize();
 			
 			Resource resource = new UrlResource(filePath.toUri());
 			
 			if (resource.exists())
 				return resource;
 			else
-				throw new RuntimeException("File not found: " + fileName);
+				throw new RuntimeException("File not found: " + path);
 		} catch (Exception ex) {
-			throw new RuntimeException("File not found: " + fileName);
+			throw new RuntimeException("File not found: " + path);
 		}
 	}
 }
