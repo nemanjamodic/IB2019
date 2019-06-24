@@ -49,9 +49,10 @@ public class UploadController {
 	@GetMapping("/download/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(
     		@PathVariable String fileName, 
-    		HttpServletRequest request) {
+    		HttpServletRequest request,
+    		Principal principal) {
         // Load file as Resource
-        Resource resource = uploadService.loadFile(fileName);
+        Resource resource = uploadService.loadFile(principal.getName() + "/data/" + fileName);
 
         // Try to determine file's content type
         String contentType = null;
