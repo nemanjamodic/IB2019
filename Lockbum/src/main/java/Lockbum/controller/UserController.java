@@ -1,17 +1,16 @@
 package Lockbum.controller;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.KeyPair;
 import java.security.Principal;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Optional;
-
-import javax.annotation.security.RolesAllowed;
 
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
@@ -81,6 +80,49 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/myFiles")
+	public ResponseEntity<?> getFileNames(Principal principal) {
+		User user = userRepository.findByEmail(principal.getName());
+		
+		if(user == null)
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+		
+		File folder = new File("data/" + user.getEmail() + "/data");
+
+		ArrayList<String> fileNames = new ArrayList<String>();
+		for (File file : folder.listFiles()) {
+		    fileNames.add(file.getName());
+		}
+		
+		return new ResponseEntity<ArrayList<String>>(fileNames, HttpStatus.OK);
+	}
+	
+	@GetMapping("/activate/{id}")
+	public ResponseEntity<?> activate(
+			@PathVariable("id") int id,
+			Principal principal)
+	{
+		
+		User logged = userRepository.findByEmail(principal.getName());
+		
+		if(!logged.getAuthority().getName().equals("admin")) {
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+
+		}
+		
+		User user = userRepository.findUserById(id);
+		
+		if(user.isActive()) {
+			return new ResponseEntity<String>("User is active!", HttpStatus.BAD_REQUEST);
+		}
+		
+		user.setActive(true);
+		
+		userRepository.save(user);
+		
+		return new ResponseEntity<String>("User is active!", HttpStatus.OK);
+	}
+	
 	private boolean generateJKS(User user) {
 		try {
 			CertificateGenerator gen = new CertificateGenerator();
@@ -141,31 +183,5 @@ public class UserController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
-	
-	@GetMapping("/activate/{id}")
-	public ResponseEntity<?> configure(
-			@PathVariable("id") int id,
-			Principal principal)
-	{
-		
-		User loged = userRepository.findByEmail(principal.getName());
-		
-		if(!loged.getAuthority().getName().equals("admin")) {
-			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-
-		}
-		
-		User user = userRepository.findUserById(id);
-		
-		if(user.isActive()) {
-			return new ResponseEntity<String>("User is active!", HttpStatus.BAD_REQUEST);
-		}
-		
-		user.setActive(true);
-		
-		userRepository.save(user);
-		
-		return new ResponseEntity<String>("User is active!", HttpStatus.OK);
 	}
 }

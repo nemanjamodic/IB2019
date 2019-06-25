@@ -23,7 +23,7 @@ import Lockbum.network.UploadResponse;
 import Lockbum.service.UploadService;
 
 @RestController
-public class UploadController {
+public class FileController {
 	
 	@Autowired
 	private UploadService uploadService;

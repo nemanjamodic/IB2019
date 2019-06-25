@@ -3,6 +3,7 @@ package Lockbum.security.model;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 
+@SuppressWarnings("serial")
 public class AuthenticationToken extends AbstractAuthenticationToken {
 
 	private String token;
