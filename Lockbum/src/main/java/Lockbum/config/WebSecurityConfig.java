@@ -59,6 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		// Dopusti svim korisnicima da pristupe linku za autentifikaciju
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/login").permitAll();
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/registration").permitAll();
 		// Zabrani pristup ostatku aplikacije ukoliko korisnik nije autentifikovan
         http.authorizeRequests().anyRequest().authenticated();
 		// Za neautorizovane zahteve posalji 401 gresku

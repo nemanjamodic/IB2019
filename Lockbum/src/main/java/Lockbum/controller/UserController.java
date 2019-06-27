@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Lockbum.dto.UserDTO;
 import Lockbum.model.Authority;
 import Lockbum.model.Registration;
 import Lockbum.model.User;
@@ -80,6 +82,17 @@ public class UserController {
 		
 	}
 	
+	// Check if user is active or not
+	@GetMapping("/userStatus")
+	public ResponseEntity<?> userStatus(Principal principal) {
+		User user = userRepository.findByEmail(principal.getName());
+		
+		if(user == null)
+			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
+		
+		return new ResponseEntity<Boolean>(user.isActive(), HttpStatus.OK);
+	}
+	
 	@GetMapping("/myFiles")
 	public ResponseEntity<?> getFileNames(Principal principal) {
 		User user = userRepository.findByEmail(principal.getName());
@@ -97,7 +110,7 @@ public class UserController {
 		return new ResponseEntity<ArrayList<String>>(fileNames, HttpStatus.OK);
 	}
 	
-	@GetMapping("/activate/{id}")
+	@PostMapping("/activate/{id}")
 	public ResponseEntity<?> activate(
 			@PathVariable("id") int id,
 			Principal principal)
@@ -121,6 +134,27 @@ public class UserController {
 		userRepository.save(user);
 		
 		return new ResponseEntity<String>("User is active!", HttpStatus.OK);
+	}
+	
+	@GetMapping("/role")
+	public ResponseEntity<?> getUserRole(Principal principal) {
+		User user = userRepository.findByEmail(principal.getName());
+		
+		return new ResponseEntity<Authority>(user.getAuthority(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/inactiveUsers")
+	public ResponseEntity<?> getInactiveUsers(Principal principal) {
+		User user = userRepository.findByEmail(principal.getName());
+		
+		if (!user.getAuthority().getName().equals("admin"))
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		
+		List<UserDTO> users = new ArrayList<UserDTO>();
+		for (User inactiveUser : userRepository.findAllByActiveIsFalse()) 
+			users.add(new UserDTO(inactiveUser));
+		
+		return new ResponseEntity<List<UserDTO>>(users, HttpStatus.OK);
 	}
 	
 	private boolean generateJKS(User user) {
