@@ -56,11 +56,7 @@ public class UserController {
 			return new ResponseEntity<String>("User with this email already exists!", HttpStatus.BAD_REQUEST);
 		}
 		user.setEmail(registration.getEmail());
-		
-		BCryptPasswordEncoder pass = new BCryptPasswordEncoder();
-		
-		user.setPassword(pass.encode(registration.getPassword()));
-		user.setActive(false);
+		user.setPassword(registration.getPassword());
 		
 		// Generate initial folders for this user
 		generateFolders(user);
@@ -68,6 +64,11 @@ public class UserController {
 		if (generateJKS(user)) {
 			user.setCertificate("cert.jks");
 		}
+		
+		BCryptPasswordEncoder pass = new BCryptPasswordEncoder();
+		
+		user.setPassword(pass.encode(registration.getPassword()));
+		user.setActive(false);
 		
 		Authority authority = authorityService.findRegular();
 		

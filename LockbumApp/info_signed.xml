@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><lockbum><email>nemza@gmail.com</email><images><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><lockbum><email>novi@gmail.com</email><images><xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" Type="http://www.w3.org/2001/04/xmlenc#Content"><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#tripledes-cbc"/><ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
 <ds:KeyName>Kriptovani tajni kljuc</ds:KeyName>
-<xenc:EncryptedKey><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/><xenc:CipherData><xenc:CipherValue>1S2U92ZXRZ8XFhDct9iJz+iaSujPZDMnhvhO8RS2Mq9Ik88X8e7cRGs7AoUik/lQxMDTOY5n7g1X&#13;
-iZwvd65OnYY12MmLg7ppNyD+odO8m6zJS5PUmpv2CK60JX+yUv1hYrWDMEtbCoRZj1SYiOu1q8ad&#13;
-6qyiCvTE+mZ8l4KHEaE=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData><xenc:CipherValue>Q0CA9B9PPM6xu5ALw9/meBD26YIyqfgWzlB7QlPtWAg1AxHq6y8YICFtT4VcvZ+KcZ8VwJq244sJ&#13;
-sk97hZ8KCD/8vCRvEPaa4eh7urNqhN9Jy2OheVfSqS1ijgpA90+JMGpn/Za29fLWdujr/P/kndm7&#13;
-yK5MlUGH/2JsSZLZYXssKKUA+Ep8fkoJYzxIl5JpAJ261+SBSWWOB4fY6ctrci7bWIdsJ9trDj6T&#13;
-kL8Ylfk21VTvsrrDIEVaz7NdZ8PRRlEKVI/KfILIl4IsKON434YGwdMIFxSP0nzvD687PBoUCR6n&#13;
-5arQrUSUemU3SMpSE6C8XORm6sBSlm68NQ3g9rzK7m3kUmRrGhrMqRMplzoNFc5X+7L4MR1pWzKf&#13;
-iGkN</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></images><date>Sat Jun 29 15:12:53 CEST 2019</date><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+<xenc:EncryptedKey><xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#rsa-1_5"/><xenc:CipherData><xenc:CipherValue>CUdTzpRikGtCprTCfmqfPuIKf64y2Turpa+ZAT99h7cQUrorAt8f1EQxl1CEZqkac/QncXrlU5nB&#13;
+sV+M6O0g7LhWuefK0+zqktmDhTq63T+fqIbhCsoD5/FOBm+7qWhvzu6eZgyfsvN37buI3Y1NJvMn&#13;
+xpjjYPyijyELDIM/Vqw=</xenc:CipherValue></xenc:CipherData></xenc:EncryptedKey></ds:KeyInfo><xenc:CipherData><xenc:CipherValue>xW+5NsheMcdkdEOiucJxiqeXXWSxRt7FgNOpJsyAIcCo7nDy97DwTUE9Acox2B7954gafvdrr8Mp&#13;
+nj3XfhMD1eqpJTRx6s4wkLHxtLOUPcCDjbR24ZzHYwKefoNtCl/A3p0wjkT/p68zChhxRGJKQtga&#13;
+5HzCUBnJWvVZVzBq0Byf9bgDGX27yU65lcakuYKUDbY24LC9pnGSN7H7nHxx0g8zjpshizfX96+o&#13;
+tT8EIOj4WtNmADnuz74Dye+jqfyf</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></images><date>Sat Jun 29 15:59:12 CEST 2019</date><ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
 <ds:SignedInfo>
 <ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
 <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
@@ -17,38 +15,37 @@ iGkN</xenc:CipherValue></xenc:CipherData></xenc:EncryptedData></images><date>Sat
 <ds:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/>
 </ds:Transforms>
 <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
-<ds:DigestValue>GpajSjRx7odhgbYRMgbG4r87HvU=</ds:DigestValue>
+<ds:DigestValue>xyPdxBATIaP4gQppIUxt5S5GsEc=</ds:DigestValue>
 </ds:Reference>
 </ds:SignedInfo>
 <ds:SignatureValue>
-GRXGU9zOXywvopF3KFro/uz/S+dc48KhrK2MHT8nt52R4LLZ6gvcMeJOmoIoux/aWWaF+vKHHGZX&#13;
-xOt4u5P0gYBXrg2LWk9AsD+Rc4Q0qKBkYX1EMc8btL4lWSCyddHhC8rSaXuP3Gsem1jj6Eap3nY5&#13;
-yPq8DuPZmWIcqB42PUQ=
+QUaJSeNMwjy7S+9HgkbSjlghzi0ENafnKY1kKNjhTFva2QJKL/4zs44skT3/wUvnMaXTQsTbI6TD&#13;
+LCOKrkuo5nTWyPF8miGA/wl7FR29y3pe/GWfSxTGJVsiY7Mx15QGAz4rxqHLHUFpM9p8l/zaTTe7&#13;
+1cm+rfOFLVkiN8hzwjo=
 </ds:SignatureValue>
 <ds:KeyInfo>
 <ds:KeyValue>
 <ds:RSAKeyValue>
-<ds:Modulus>5AnqSwjqQEvormXeiS5fh2IH4yeEkQzCBbY0voZfRx6+eYRVataTr2QogFokM6lBLzkVzTUsfhDy&#13;
-yUQ9Hym9jmABYEQhT04uRTlYIU0QCvNfg4nKfXVRBdK7VSIhfyQKImtaY1C5EnjivmRA6ssl4S0L&#13;
-TJeNzbetoR13Vfm+1D0=</ds:Modulus>
+<ds:Modulus>k6rZ6WWxmszwIYFhWG892UChF9E9yfFcxODXMVuOT6fkF8GGiUZFDaOjjR61gtuVYdJkYjDNXUzH&#13;
+sq+XdG5KkLb+js25AFDHkZ5UMWjW6JRG1cSTWBeSblovZos+5bDPJJ6fJZpo3gf0eaMFYnOyGt99&#13;
+r/Xv5KFmaq3ZARhLcrM=</ds:Modulus>
 <ds:Exponent>AQAB</ds:Exponent>
 </ds:RSAKeyValue>
 </ds:KeyValue>
 <ds:X509Data>
 <ds:X509Certificate>
-MIICrDCCAhWgAwIBAgIBATANBgkqhkiG9w0BAQsFADCBmzEYMBYGA1UEAwwPbmVtemFAZ21haWwu&#13;
-Y29tMQkwBwYDVQQEDAAxCTAHBgNVBCoMADERMA8GA1UECgwIQ2hvY01haWwxETAPBgNVBAsMCENo&#13;
-b2NNYWlsMQswCQYDVQQGEwJSUzEeMBwGCSqGSIb3DQEJARYPbmVtemFAZ21haWwuY29tMRYwFAYK&#13;
-CZImiZPyLGQBAQwGMTIzNDQ1MB4XDTE5MDYyNDEwNDM0NVoXDTIxMDYyNDEwNDM0NVowgZsxGDAW&#13;
-BgNVBAMMD25lbXphQGdtYWlsLmNvbTEJMAcGA1UEBAwAMQkwBwYDVQQqDAAxETAPBgNVBAoMCENo&#13;
-b2NNYWlsMREwDwYDVQQLDAhDaG9jTWFpbDELMAkGA1UEBhMCUlMxHjAcBgkqhkiG9w0BCQEWD25l&#13;
-bXphQGdtYWlsLmNvbTEWMBQGCgmSJomT8ixkAQEMBjEyMzQ0NTCBnzANBgkqhkiG9w0BAQEFAAOB&#13;
-jQAwgYkCgYEA5AnqSwjqQEvormXeiS5fh2IH4yeEkQzCBbY0voZfRx6+eYRVataTr2QogFokM6lB&#13;
-LzkVzTUsfhDyyUQ9Hym9jmABYEQhT04uRTlYIU0QCvNfg4nKfXVRBdK7VSIhfyQKImtaY1C5Enji&#13;
-vmRA6ssl4S0LTJeNzbetoR13Vfm+1D0CAwEAATANBgkqhkiG9w0BAQsFAAOBgQCw3Az6yFUdrpJL&#13;
-XgJgrl/jM5Qw7eKtHMFmQt5jLQYd1uO/sUXR6rk+6c3NLGhK+RnMqCCe3lGww0VKAvgSuFs+u7wB&#13;
-AgcFHlzkayKIUTBcNjTJsZPOVEE0HYU95UG2sd6H/og6V4YHz1Evz7WJjPwkZ0975Jae7/Lw+cFF&#13;
-/l8NWA==
+MIICqDCCAhGgAwIBAgIBATANBgkqhkiG9w0BAQsFADCBmTEXMBUGA1UEAwwObm92aUBnbWFpbC5j&#13;
+b20xCTAHBgNVBAQMADEJMAcGA1UEKgwAMREwDwYDVQQKDAhDaG9jTWFpbDERMA8GA1UECwwIQ2hv&#13;
+Y01haWwxCzAJBgNVBAYTAlJTMR0wGwYJKoZIhvcNAQkBFg5ub3ZpQGdtYWlsLmNvbTEWMBQGCgmS&#13;
+JomT8ixkAQEMBjEyMzQ0NTAeFw0xOTA2MjkxMzQ1MDZaFw0yMTA2MjkxMzQ1MDZaMIGZMRcwFQYD&#13;
+VQQDDA5ub3ZpQGdtYWlsLmNvbTEJMAcGA1UEBAwAMQkwBwYDVQQqDAAxETAPBgNVBAoMCENob2NN&#13;
+YWlsMREwDwYDVQQLDAhDaG9jTWFpbDELMAkGA1UEBhMCUlMxHTAbBgkqhkiG9w0BCQEWDm5vdmlA&#13;
+Z21haWwuY29tMRYwFAYKCZImiZPyLGQBAQwGMTIzNDQ1MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCB&#13;
+iQKBgQCTqtnpZbGazPAhgWFYbz3ZQKEX0T3J8VzE4NcxW45Pp+QXwYaJRkUNo6ONHrWC25Vh0mRi&#13;
+MM1dTMeyr5d0bkqQtv6OzbkAUMeRnlQxaNbolEbVxJNYF5JuWi9miz7lsM8knp8lmmjeB/R5owVi&#13;
+c7Ia332v9e/koWZqrdkBGEtyswIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAHRl/y5y4Kkiw0GCXulk&#13;
+DrUzP2UVZTmbEuXaOMRHrAIKN7ZELyWpu+7nHTRDfVAxho6AIg+0zmBcDC5c0u+5sMdLCLnBBYmP&#13;
+RoVB1UbklaUbeP2RBK1OGSoNVSokNfO3HHrCaPhp5ZzI+XOaezTvDQELE62JILs7SO49hnqU+GeG
 </ds:X509Certificate>
 </ds:X509Data>
 </ds:KeyInfo>

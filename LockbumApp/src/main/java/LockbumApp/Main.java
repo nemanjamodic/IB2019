@@ -2,6 +2,7 @@ package LockbumApp;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,11 +64,21 @@ public class Main {
 					continue;
 				}
 				
-				List<File> images = ImageAnalizer.findImagesInFolder(file);	
+				List<File> images = ImageAnalizer.findImagesInFolder(file);
+				
+				if (images.size() == 0) {
+					System.out.println("That folder does not contain any images!");
+					continue;
+				}
 				
 				File signedXML = XMLCreateDocument.generateDocument(images);
 				
-				File archive = ZipArchiver.imagesToZip(images, signedXML, "slicice.zip");
+				Date date = new Date();
+				
+				//String archiveName = date.getDay() + "." + date.getMonth() + "." + date.getYear() + "-" + date.getMinutes() + "." + date.getSeconds() + ".zip";
+				String archiveName = date.toString().replace(" CEST ", " ").replace(' ', '-').replace(':', '-') + ".zip";
+				
+				File archive = ZipArchiver.imagesToZip(images, signedXML, archiveName);
 				
 				UploadService uploadService = new UploadService();
 				uploadService.uploadArchive(archive);

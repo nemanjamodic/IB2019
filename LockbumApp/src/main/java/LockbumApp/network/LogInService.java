@@ -4,18 +4,14 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.bouncycastle.crypto.tls.ClientAuthenticationType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -87,6 +83,9 @@ public class LogInService {
 			
 			HttpResponse response = client.execute(post);
 			
+			if (response.getStatusLine().getStatusCode() != 200)
+				return null;
+			
 			//String token = EntityUtils.toString(response.getEntity());
 			System.out.println(response);
 			ObjectMapper mapper = new ObjectMapper();
@@ -118,11 +117,12 @@ public class LogInService {
 				String isActive = EntityUtils.toString(respo.getEntity());
 				boolean status = Boolean.parseBoolean(isActive);
 				
-				User user = new User(email, password, admin, tokenResponse.getToken(), status);
+				User user = new User(email, password, admin, tokenResponse.getToken(), status);				
+				
 				return user;
 			}
 
-		}catch(Exception e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
