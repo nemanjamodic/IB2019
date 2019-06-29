@@ -67,27 +67,6 @@ public class Application {
 			
 			
 		}
-		
-		
-		// --------- OVAJ DEO TI JE UPLOAD BUKVALNO
-		// korisniku nekako treba da omogucis da odabere ovu putanju
-		// umesto "E://testPodaci" korisnik treba da moze da izabere neku drugu putanju
-		
-		/*File file = new File("E://testPodaci");
-		
-		if(!file.exists()) {
-			System.out.println("archive is null!");
-			return;
-		}
-		
-		List<File> images = ImageAnalizer.findImagesInFolder(file);	
-		
-		File signedXML = XMLCreateDocument.generateDocument(images);
-		
-		File archive = ZipArchiver.imagesToZip(images, signedXML, "slicice.zip");
-		
-		UploadService uploadService = new UploadService();
-		uploadService.uploadArchive(archive);*/
 
 	}
 

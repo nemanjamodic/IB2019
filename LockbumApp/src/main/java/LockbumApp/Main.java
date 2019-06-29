@@ -1,11 +1,17 @@
 package LockbumApp;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import LockbumApp.model.User;
 import LockbumApp.network.DownloadService;
+import LockbumApp.network.UploadService;
 import LockbumApp.network.UserService;
+import LockbumApp.util.ImageAnalizer;
+import LockbumApp.util.ZipArchiver;
+import LockbumApp.xml.XMLCreateDocument;
 
 public class Main {
 	
@@ -48,7 +54,23 @@ public class Main {
 			command = input.nextLine();
 			
 			if (command.equals("1")) {
-				System.out.println("1");
+				System.out.println("Enter path to folder you want to upload: ");
+				String path = input.nextLine();		
+				File file = new File(path);
+				
+				if(!file.exists()) {
+					System.out.println("Archive is null!");
+					continue;
+				}
+				
+				List<File> images = ImageAnalizer.findImagesInFolder(file);	
+				
+				File signedXML = XMLCreateDocument.generateDocument(images);
+				
+				File archive = ZipArchiver.imagesToZip(images, signedXML, "slicice.zip");
+				
+				UploadService uploadService = new UploadService();
+				uploadService.uploadArchive(archive);
 			} else if (command.equals("2")) {
 				ArrayList<String> fileNames = downloadService.getFileNames();
 				
