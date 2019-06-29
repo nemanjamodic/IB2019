@@ -45,23 +45,13 @@ public class Application {
 					if (password != null && !password.isEmpty())
 						break;
 				}
-				
-				// TODO: IVA ODRADI OVO
-				// Pozovi neku metodu u LogInService koja ce pokusati da prijavi korisnika
-				// i koja ce da vrati token
-				// String token = loginService.login(email, password);
-				String token = "eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJjaG9jbWFpbGJhY2tlbmQiLCJzdWIiOiJ2YWlAZ21haWwuY29tIiwiYXVkIjoiY2hvY3VzZXIiLCJpYXQiOjE1NjE2MzAzNDgsImV4cCI6MTU2MTYzMzM0OH0.MhOf0CfiyplIUE2ppsVvZN6K1MFuPxwLJMiub8iVgeBB89vUwEzIAcDspmVDTAt7si7gYScDwu7juaMoeKJfeQ";
-				boolean admin = true;
-				
-				// if (token != null)
-				user = new User(email, password, token, admin);
-				
-				// Active mozes da dobijes tako sto ces da posaljes zahtev na GET /userStatus koji ce ti odgovoriti sa boolean vrednosti
-				boolean active = false;
-				
-				user.setActive(active);
-				break;
-				// kraj ifa
+
+				user = loginService.login(email, password);
+				if(user != null) {
+					break;
+				}else {
+					System.out.println("Incorect credentials, try again!");
+				}
 			}
 			
 

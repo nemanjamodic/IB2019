@@ -16,7 +16,15 @@ public class User {
 		this.token = token;
 		this.admin = admin;
 	}
-
+	
+	public User(String email, String password, boolean admin, String token, boolean active) {
+		super();
+		this.email = email;
+		this.password = password;
+		this.admin = admin;
+		this.token = token;
+		this.active = active;
+	}
 	public User() {
 
 	}

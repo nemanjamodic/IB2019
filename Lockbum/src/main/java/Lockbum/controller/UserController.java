@@ -138,9 +138,9 @@ public class UserController {
 	
 	@GetMapping("/role")
 	public ResponseEntity<?> getUserRole(Principal principal) {
-		User user = userRepository.findByEmail(principal.getName());
+		User user = userRepository.findByEmail(principal.getName());			
 		
-		return new ResponseEntity<Authority>(user.getAuthority(), HttpStatus.OK);
+		return new ResponseEntity<String>(user.getAuthority().getName(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/inactiveUsers")
