@@ -60,7 +60,7 @@ public class Main {
 				File file = new File(path);
 				
 				if(!file.exists()) {
-					System.out.println("Archive is null!");
+					System.out.println("Folder does not exist!");
 					continue;
 				}
 				

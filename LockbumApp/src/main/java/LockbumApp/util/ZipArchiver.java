@@ -12,7 +12,7 @@ public class ZipArchiver {
 
 	public static File imagesToZip(List<File> images, File signedXML, String archiveName)
 	{
-		File archive = new File(archiveName);
+		File archive = new File("./data/upload/" + archiveName);
 		
 		byte[] buf = new byte[1024];
 	    try {
@@ -45,7 +45,7 @@ public class ZipArchiver {
             reader.close();
 	        
 	        writer.close();
-	        System.out.println(archive.getAbsolutePath());
+
 	        return archive;
 	    } catch (IOException ex) {
 	        System.out.println(ex.getMessage());

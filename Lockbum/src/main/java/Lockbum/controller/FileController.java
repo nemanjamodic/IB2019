@@ -1,15 +1,20 @@
 package Lockbum.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.Principal;
 
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,16 +22,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import Lockbum.network.UploadResponse;
+import Lockbum.crypto.AsymmetricEncription;
+import Lockbum.crypto.SymmetricAES;
+import Lockbum.model.User;
+import Lockbum.repository.UserRepository;
 import Lockbum.service.UploadService;
+import Lockbum.util.KeyStoreReader;
 
 @RestController
 public class FileController {
 	
 	@Autowired
 	private UploadService uploadService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@PostMapping("/upload")
 	public ResponseEntity<?> uploadFile(
@@ -34,51 +45,66 @@ public class FileController {
 			Principal principal)
 	{
 		String fileName = uploadService.uploadFile(file, principal.getName());
-		
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("download/")
-                .path(fileName)
-                .toUriString();
+		if (fileName == null)
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
-        UploadResponse response = new UploadResponse(fileName, fileDownloadUri,
-                file.getContentType(), file.getSize());
-        
-        return new ResponseEntity<UploadResponse>(response, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping("/download/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(
+    public void downloadFile(
     		@PathVariable String fileName, 
     		HttpServletRequest request,
-    		Principal principal) {
-        // Load file as Resource
-        Resource resource = uploadService.loadFile(principal.getName() + "/data/" + fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            //logger.info("Could not determine file type.");
-        }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
-    }
-	
-	@PostMapping("/test")
-	public ResponseEntity<?> upload(
-			@RequestParam("file") String file)
+    		HttpServletResponse response,
+    		Principal principal)
 	{
-		System.out.println(file);
-		return new ResponseEntity<String>("Odgovorio sam!", HttpStatus.OK);
-	}
+		// Resolving data necessary for encryption
+		User user = userRepository.findByEmail(principal.getName());
+		if (user == null)
+			return;
+		// Obtaining user's key store
+		KeyStoreReader ksr = new KeyStoreReader(user);
+
+		// Wrapping user's public and private key in this object
+		AsymmetricEncription ae = new AsymmetricEncription(ksr.getPublicKey(), ksr.getPrivateKey());
+
+		// Obtaining user's symmetric key
+		SecretKey symmetricKey;
+		try {
+			// Reading symmetric key file
+			File symmKeyFile = new File("./data/" + user.getEmail() + "/symmKey");
+			InputStream stream = FileUtils.openInputStream(symmKeyFile);
+			byte[] encryptedKey = IOUtils.toByteArray(stream);
+
+			// Decrypting data with user's asymmetric keys
+			byte[] decryptedKey = ae.decrypt(encryptedKey);
+
+			// Creating SecretKey object with resulting data
+			symmetricKey = new SecretKeySpec(decryptedKey, "AES");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		// Decrypting file using obtained symmetric key
+		try {
+			// Reading file
+			File file = new File("./data/" + principal.getName() + "/data/" + fileName); 
+			InputStream stream = FileUtils.openInputStream(file);
+			byte[] encrypted = IOUtils.toByteArray(stream);
+
+			// Decrypting data using symmetric key
+			SymmetricAES symmAES = new SymmetricAES(symmetricKey);
+			byte[] original = symmAES.decrypt(encrypted);
+
+			// Transferring decrypted data to response
+			InputStream in = new ByteArrayInputStream(original);
+			IOUtils.copy(in, response.getOutputStream());
+			// Clearing buffer
+			response.flushBuffer();
+	    } catch (IOException ex) {
+	    	throw new RuntimeException("IOError writing file to output stream");
+	    }
+    }
 
 }

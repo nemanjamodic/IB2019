@@ -9,41 +9,46 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 
+import Lockbum.model.User;
+
 public class KeyStoreReader {
 
-	private static final String KEY_STORE_FILE = "./data/marija.jks";
-	
-	private char[] password = "test10".toCharArray();
-	private char[] keyPass  = "marija1".toCharArray();
-	
-	
-	public void testIt() {
-		readKeyStore();
-	}
-	
-	private void readKeyStore(){
-		try {
-			//kreiramo instancu KeyStore
-			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
-			//ucitavamo podatke
-			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, password);
-			//citamo par sertifikat privatni kljuc
-			if (ks.isKeyEntry("marija")) {
-				Certificate cert = ks.getCertificate("marija");
-				PrivateKey privKey = (PrivateKey)ks.getKey("marija", keyPass);
-			} else
-				System.out.println("Nema para kljuceva za Mariju");
-			
-			if (ks.isCertificateEntry("jovan")) {
-				Certificate cert = ks.getCertificate("jovan");
-			} else
-				System.out.println("Nema sertifikata za Jovana");
+	private User user;
+	// Values get set after calling readCertificate() method
+	private Certificate certificate = null;
+	private PrivateKey privateKey = null;
+	private PublicKey publicKey = null;
+
+	public KeyStoreReader(User user) {
+		this.user = user;
 		
+		readCertificate();
+	}
+
+	public void readCertificate() {
+		try {
+			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
+
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream(user.getCertificate()));
+			
+			String alias = user.getEmail();
+			//char[] password = user.getPassword().toCharArray();
+			char[] password = user.getEmail().toCharArray();
+			
+			ks.load(in, password);
+
+			if (ks.isKeyEntry(alias)) {
+				certificate = ks.getCertificate(alias);
+				privateKey = (PrivateKey) ks.getKey(alias, password);
+				publicKey = certificate.getPublicKey();
+			} else
+				System.out.println("Unable to find certificate!");
+
 		} catch (KeyStoreException e) {
 			e.printStackTrace();
 		} catch (NoSuchProviderException e) {
@@ -59,11 +64,30 @@ public class KeyStoreReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
 
+	public Certificate getCertificate() {
+		return certificate;
 	}
-	
-	public static void main(String[] args) {
-		KeyStoreReader test = new KeyStoreReader();
-		test.testIt();
+
+	public void setCertificate(Certificate certificate) {
+		this.certificate = certificate;
 	}
+
+	public PrivateKey getPrivateKey() {
+		return privateKey;
+	}
+
+	public void setPrivateKey(PrivateKey privateKey) {
+		this.privateKey = privateKey;
+	}
+
+	public PublicKey getPublicKey() {
+		return publicKey;
+	}
+
+	public void setPublicKey(PublicKey publicKey) {
+		this.publicKey = publicKey;
+	}
+
 }

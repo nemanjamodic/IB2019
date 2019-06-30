@@ -57,8 +57,6 @@ public class Application {
 					user = loginService.login(email, password);
 					if(user != null) {
 						if (loginService.getJKS(user.getToken())) {
-							System.out.println("JKS downloaded successfully!");
-							
 							Main.application(input);
 						} else {
 							System.out.println("Unable to start app because JKS is missing!");

@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.crypto.SecretKey;
+
+import org.apache.commons.io.FileUtils;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +28,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import Lockbum.crypto.AsymmetricEncription;
+import Lockbum.crypto.SymmetricAES;
 import Lockbum.dto.UserDTO;
 import Lockbum.model.Authority;
 import Lockbum.model.Registration;
 import Lockbum.model.User;
 import Lockbum.repository.UserRepository;
 import Lockbum.service.AuthorityService;
+import Lockbum.util.KeyStoreReader;
 import Lockbum.util.KeyStoreWriter;
 import Lockbum.util.certificate.CertificateGenerator;
 import Lockbum.util.certificate.IssuerData;
@@ -59,12 +65,17 @@ public class UserController {
 		user.setPassword(registration.getPassword());
 		
 		// Generate initial folders for this user
+		System.out.println("Generating folder...");
 		generateFolders(user);
 		// Generate JKS for this user
+		System.out.println("Generating JKS...");
 		if (generateJKS(user)) {
-			user.setCertificate("cert.jks");
+			user.setCertificate("./data/" + user.getEmail() + "/cert.jks");
 		}
-		
+		System.out.println("Generating Symm Key...");
+		// Generate secure symmetric key for this user
+		generateSymmetricKey(user);
+		System.out.println("Done!");
 		BCryptPasswordEncoder pass = new BCryptPasswordEncoder();
 		
 		user.setPassword(pass.encode(registration.getPassword()));
@@ -169,7 +180,8 @@ public class UserController {
 			Date endDate = calendar.getTime();
 			
 			String email = user.getEmail();
-			char[] password = user.getPassword().toCharArray();
+			//char[] password = user.getPassword().toCharArray();
+			char[] password = email.toCharArray();
 
 			X500NameBuilder builder = new X500NameBuilder(BCStyle.INSTANCE);
 		    builder.addRDN(BCStyle.CN, email);
@@ -218,5 +230,24 @@ public class UserController {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	private void generateSymmetricKey(User user) {
+		KeyStoreReader ksr = new KeyStoreReader(user);
+		
+		SecretKey secretKey = SymmetricAES.generateKey();
+		
+		AsymmetricEncription ae = new AsymmetricEncription(ksr.getPublicKey(), ksr.getPrivateKey());
+		
+		byte[] encryptedKey = ae.encrypt(secretKey.getEncoded());
+		
+		File keyFile = new File("./data/" + user.getEmail() + "/symmKey");
+		
+		try {
+			FileUtils.writeByteArrayToFile(keyFile, encryptedKey);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

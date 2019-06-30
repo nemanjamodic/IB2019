@@ -23,9 +23,11 @@ public class SecurityService {
 			KeyStore ks = KeyStore.getInstance("JKS", "SUN");
 			// ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, Application.user.getPassword().toCharArray());
+			//ks.load(in, Application.user.getPassword().toCharArray());
+			ks.load(in, Application.user.getEmail().toCharArray());
 
 			if (ks.isKeyEntry(Application.user.getEmail())) {
+				//Certificate cert = ks.getCertificate(Application.user.getEmail());
 				Certificate cert = ks.getCertificate(Application.user.getEmail());
 				return cert;
 			} else
@@ -36,7 +38,7 @@ public class SecurityService {
 			return null;		
 		}
 	}
-	
+
 	public static SecretKey generateDataEncryptionKey() {
 
 		try {
@@ -57,10 +59,12 @@ public class SecurityService {
 			
 			//ucitavamo podatke
 			BufferedInputStream in = new BufferedInputStream(new FileInputStream(KEY_STORE_FILE));
-			ks.load(in, Application.user.getPassword().toCharArray());
+			//ks.load(in, Application.user.getPassword().toCharArray());
+			ks.load(in, Application.user.getEmail().toCharArray());
 			
 			if(ks.isKeyEntry(Application.user.getEmail())) {
-				PrivateKey pk = (PrivateKey) ks.getKey(Application.user.getEmail(), Application.user.getPassword().toCharArray());
+				//PrivateKey pk = (PrivateKey) ks.getKey(Application.user.getEmail(), Application.user.getPassword().toCharArray());
+				PrivateKey pk = (PrivateKey) ks.getKey(Application.user.getEmail(), Application.user.getEmail().toCharArray());
 				return pk;
 			}
 			else

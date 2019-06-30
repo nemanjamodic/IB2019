@@ -213,10 +213,7 @@ public class XMLCreateDocument {
 		PrivateKey privateKey = SecurityService.readPrivateKey();			
 		Certificate certificate = SecurityService.readCertificate();
 		
-		System.out.println("Signing....");
 		document = signDocument(document, privateKey, certificate);
-				
-		System.out.println("Signing of document done");
 		
 		return document;
 	}
@@ -273,8 +270,7 @@ public class XMLCreateDocument {
 			transformer.transform(source, result);
 
 			writer.close();
-
-			System.out.println("Succesfully saved!");
+			
 			return outFile;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -283,6 +279,6 @@ public class XMLCreateDocument {
 	}
 	
 	public static File generateDocument(List<File> images) {
-		return saveDocument(signDocument(encryptDocument(createDocument(XMLInformationFromImages(images)))), "info_signed.xml");
+		return saveDocument(signDocument(createDocument(XMLInformationFromImages(images))), "info_signed.xml");
 	}
 }

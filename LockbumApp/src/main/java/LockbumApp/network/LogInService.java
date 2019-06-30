@@ -46,7 +46,6 @@ public class LogInService {
 
 		try {
 			HttpResponse response = client.execute(request);
-			//System.out.println(response);
 
 			BufferedInputStream bis = new BufferedInputStream(response.getEntity().getContent());
 
@@ -86,8 +85,6 @@ public class LogInService {
 			if (response.getStatusLine().getStatusCode() != 200)
 				return null;
 			
-			//String token = EntityUtils.toString(response.getEntity());
-			System.out.println(response);
 			ObjectMapper mapper = new ObjectMapper();
 			
 			TokenResponse tokenResponse = mapper.readValue(response.getEntity().getContent(), TokenResponse.class);
@@ -113,7 +110,6 @@ public class LogInService {
 				HttpGet statusGet = new HttpGet(statusUrl);
 				statusGet.setHeader("Authorization", "Bearer " + tokenResponse.getToken());
 				HttpResponse respo = client.execute(statusGet);
-				//Boolean status = mapper.readValue(respo.getEntity().getContent(), Boolean.class);
 				String isActive = EntityUtils.toString(respo.getEntity());
 				boolean status = Boolean.parseBoolean(isActive);
 				
